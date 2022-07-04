@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="pt-BR" ng-app="Comics">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Marvel Heroes</title>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/angular.min.js"></script>
+	<script src="js/angular-ui-router.min.js"></script>
+	<script src="js/ng-infinite-scroll.min.js"></script>
+	<script src="js/comics.js"></script>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="style.css">
+	<link rel="shortcut icon" href="/src/assets/favicon.ico">
+
+</head>
+
+<body ng-controller="MainCtrl">
+	<header class="container-header">
+		<h1>MARVEL HEROES</h1>
+		<h4>Encontre o seu herói</h4>
+	</header>
+
+	<div class="search" ng-controller="MainCtrl">
+		<label>Pesquise um herói</label>
+		<input type="text" ng-model="name" />
+		<button ng-click="findName(name)">Pesquisar</button>
+
+		<div class="hero" style="background-image:url({{characterImg}})">
+			<h1>{{characterName}}</h1>
+			<p>{{description}}</p>
+			<a href="{{characterUrl}}" target="_blank">
+				Encontre mais sobre este personagem aqui
+			</a>
+		</div>
+	</div>
+
+	<div>
+		<label>
+			Lista de heróis
+		</label>
+	</div>
+	<div ui-view infinite-scroll="more.load()" infinite-scroll-distance="0" infinite-scroll-disabled='more.busy'
+		class="main-container">
+
+	</div>
+	<div class="credit"><a href="#" target="_blank">Nathan Gonçalves - AngularJS Desafio</a></div>
+</body>
+
+</html>
